@@ -10,7 +10,9 @@ public class StaticDataProvider01 {
                 {0.5, 1},
                 {2.0, -0.240462},
                 {1.0, 0.0}, //not good example, test working(!) without any logic in function
-                {1.1, -0.057662}
+                {1.1, -0.057662},
+                {0.7, 1},
+                {1.4, -0.329742}
         };
     }
 
@@ -40,9 +42,12 @@ public class StaticDataProvider01 {
         };
     }
 
-    @DataProvider(name = "findIndexMax")
-    public static Object[][] findIndexMax() {
-        return new Object[][]{
+
+
+    @DataProvider(name = "dataFindMinY")
+    public static Object[][] dataFindMinY() {
+        return new Object[][][]{
+                {{0.2,10, 30.2,-2,300,0},{3}}
 
         };
     }

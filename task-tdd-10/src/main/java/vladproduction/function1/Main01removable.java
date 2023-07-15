@@ -3,7 +3,7 @@ package vladproduction.function1;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 
-public class Main01 {
+public class Main01removable {
 
     private final double EPS = 1e-6;
     private final double a = -0.5;
