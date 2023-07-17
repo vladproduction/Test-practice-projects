@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class FunctionProcessor1Test {
 
     private FunctionProcessor1 fp1;
-    private static final double EPS = 1e-6; //10^-6
+    private static final double EPS = 1e-6;
 
     @BeforeMethod
     public void setUp() {
@@ -50,54 +50,64 @@ public class FunctionProcessor1Test {
 
     }
 
-    @Test
-    public void testFindMinY() {
-
-        int minIndex = fp1.findMinY(new double[]{2, 3, 5, 11, -6, 0, 55});
-        assertThat(minIndex).isEqualTo(4);
+    @Test(dataProvider = "dataForIndexMinY", dataProviderClass = StaticDataProvider01.class)
+    public void testIndexMinY(double start, double finish, double step, int expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double [] y = fp1.writeY(x);
+        int actual = fp1.findMinY(y);
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    public void testFindMaxY() {
-        assertThat(fp1.findMaxY(new double[]{2, 3, 5, 11, -6, 0, 55})).isEqualTo(6);
+    @Test(dataProvider = "dataForIndexMaxY", dataProviderClass = StaticDataProvider01.class)
+    public void testIndexMaxY(double start, double finish, double step, int expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double [] y = fp1.writeY(x);
+        int actual = fp1.findMaxY(y);
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    public void testSum() {
-        assertThat(fp1.sum(new double[]{2, 3, 5, 11, -6, 0, 55})).isEqualTo(70);
+    @Test(dataProvider = "dataForMinYByX", dataProviderClass = StaticDataProvider01.class)
+    public void testFindMinYByX(double start, double finish, double step, int expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        int actual = fp1.findMinYByX(x);
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    public void testAvg() {
-        assertThat(fp1.avg(new double[]{2, 3, 5, 11, -6, 0, 55})).isEqualTo(10);
+    @Test(dataProvider = "dataForMaxYByX", dataProviderClass = StaticDataProvider01.class)
+    public void testFindMaxYByX(double start, double finish, double step, int expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        int actual = fp1.findMaxYByX(x);
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    public void testFindMinYByX() {
-
-        int minIndex = fp1.findMinYByX(new double[]{0.9, 2.0, 0.7, 1.1, 1.4, 0.0, -2.0, -0.8, 3.0, -1.5});
-        assertThat(minIndex).isEqualTo(4);
+    @Test(dataProvider = "dataForSum", dataProviderClass = StaticDataProvider01.class)
+    public void testSum(double start, double finish, double step, double expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double [] y = fp1.writeY(x);
+        double actual = fp1.sum(y);
+        assertThat(actual).isCloseTo(expected,Offset.offset(EPS));
     }
 
-    @Test
-    public void testFindMaxYByX() {
-
-        int maxIndex = fp1.findMaxYByX(new double[]{0.9, 2.0, 0.7, 1.1, 1.4, 0.0, -2.0, -0.8, 3.0, -1.5});
-        assertThat(maxIndex).isEqualTo(2);
+    @Test(dataProvider = "dataForAvg", dataProviderClass = StaticDataProvider01.class)
+    public void testAvg(double start, double finish, double step, double expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double [] y = fp1.writeY(x);
+        double actual = fp1.avg(y);
+        assertThat(actual).isCloseTo(expected,Offset.offset(EPS));
     }
 
-    @Test
-    public void testSumByX() {
-
-        double sumByX = fp1.sumByX(new double[]{0.9, 2.0, 0.7, 1.1, 1.4, 0.0, -2.0, -0.8, 3.0, -1.5});
-        assertThat(sumByX).isEqualTo(4.629046458032491);
+    @Test(dataProvider = "dataForSumByX", dataProviderClass = StaticDataProvider01.class)
+    public void testSumByX(double start, double finish, double step, double expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double actual = fp1.sumByX(x);
+        assertThat(actual).isCloseTo(expected,Offset.offset(EPS));
     }
 
-    @Test
-    public void testAvgByX() {
-
-        double avgByX = fp1.avgByX(new double[]{0.9, 2.0, 0.7, 1.1, 1.4, 0.0, -2.0, -0.8, 3.0, -1.5});
-        assertThat(avgByX).isEqualTo(0.4629046458032491);
+    @Test(dataProvider = "dataForAvgByX", dataProviderClass = StaticDataProvider01.class)
+    public void testAvgByX(double start, double finish, double step, double expected) {
+        double [] x = fp1.writeX(start, finish, step);
+        double actual = fp1.avgByX(x);
+        assertThat(actual).isCloseTo(expected,Offset.offset(EPS));
     }
 
 

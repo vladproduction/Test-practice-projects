@@ -10,7 +10,7 @@ public class FunctionProcessor1 extends AbstractFunctionProcessor {
     private final double b = 2.0;
     @Override
     public double function(double x) {
-        if(x<=0.7+EPS)return 1; //need to add EPS, so test could run with calculation error
+        if(x<=0.7+EPS)return 1;
         if(x>1.4+EPS)return Math.exp(a*x)*Math.cos(b*x);
         return a*x*x*Math.log(x);
     }
