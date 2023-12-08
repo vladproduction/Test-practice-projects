@@ -1,0 +1,18 @@
+SPRING BOOT TESTS:
+
+*UNIT TESTS
+-we can use: @ExtendWith(MockitoExtension.class)
+-Spring context not initialized
+-shorter test execution time
+-we can use standard Mockito annotations (@Mock, @InjectedMocks etc.)
+
+*INTEGRATION TESTS
+-use @SpringBootTest
+-Spring context initialized
+-Longer test execution time
+-Use @MockBean to replace beans with mocked beans
+
+______________________________________________
+1. Mockito 5 requires Java 11 or higher.
+
+2. Mockito 5 uses mockito-inline by default.
