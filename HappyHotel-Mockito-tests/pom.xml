@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mockitotutorial</groupId>
-	<artifactId>happyhotel-Mockito-example</artifactId>
+	<artifactId>HappyHotel-Mockito-tests</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Happy Hotel App</name>
+	<name>HappyHotel-Mockito-tests</name>
 	<description>A project to learn mockito</description>
 
 	<dependencies>
