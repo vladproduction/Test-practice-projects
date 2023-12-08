@@ -1,0 +1,15 @@
+Things are covered in this project:
+*create mock and spies;
+*mock typical methods;
+*apply matchers and argument captors;
+*using verify();
+*annotations, BDD style, strict stubbing;
+*static and final methods;
+*private methods should`t be mocked;
+
+______________________________________________________________
+underline:
+Early Mockito >> no mocks for final and static methods or constructors;
+Solution >> PowerMock (additional library); //
+
+
