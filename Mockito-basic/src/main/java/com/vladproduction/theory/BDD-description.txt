@@ -1,0 +1,10 @@
+Behavior-driven development (BDD)
+Behavior-driven development is an Agile software development process that supports collaboration among the developers,
+quality analysts, and business members in a software project. It is developed from the Test-driven development (TDD) software.
+
+The BDD is a combination of general techniques and principles of the TDD with the ideas originated from the Domain-driven
+design (DDD) and the object-oriented analysis and design (OOAD) approach.
+
+Mockito uses the BDDMockito class that is available in the org.mockito package. It develops a test in BDD style. The BDD
+style of writing texts uses the //given //when //then comments as the primary part of the test body.
+It uses given(..)willReturn(..) method in place of when(..)thenReturn(..) method.

@@ -1,0 +1,8 @@
+What is stubbing in Mockito?
+A stub is a fake class that comes with preprogrammed return values. It's injected into the class under test to give you
+absolute control over what's being tested as input. A typical stub is a database connection that allows you to mimic any
+scenario without having a real database.
+
+"Strict stubbing" is a new feature in Mockito 2 that drives cleaner tests and better productivity. The easiest way to
+leverage it is via Mockito's JUnit support ( MockitoJUnit ) or Mockito Session ( MockitoSession ). How strictness influences
+the behavior of the test?
