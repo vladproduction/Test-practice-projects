@@ -1,0 +1,12 @@
+Assertion methods in JUnit 5:
+
+assertTrue
+assertFalse
+assertNull
+assertNotNull
+assertEquals
+assertNotEquals
+assertArrayEquals
+assertIterableEquals
+assertThrows
+assertDoesNotThrow
