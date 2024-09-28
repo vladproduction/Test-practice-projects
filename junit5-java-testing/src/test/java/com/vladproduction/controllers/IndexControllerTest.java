@@ -15,14 +15,14 @@ class IndexControllerTest {
     }
 
     @Test
-    void index() {
+    void testIndex() {
         assertEquals("index", indexController.index());
         assertEquals("index", indexController.index(), "Wrong view returned");
         assertEquals("index", indexController.index(), ()-> "Wrong view returned also here");
     }
 
     @Test
-    void opsHandler() {
+    void testOpsHandler() {
         assertTrue("not_implemented".equals(indexController.opsHandler()), ()-> "Some expensive build");
     }
 }
