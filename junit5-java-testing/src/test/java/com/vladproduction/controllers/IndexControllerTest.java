@@ -1,23 +1,24 @@
 package com.vladproduction.controllers;
 
+import com.vladproduction.exceptions.ValueNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IndexControllerTest {
+public class IndexControllerTest {
 
     IndexController indexController;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         indexController = new IndexController();
     }
 
     //@DisplayName("Test Name:  index view as returned")
     @Test
-    void testIndex() {
+    public void testIndex() {
         assertEquals("index", indexController.index());
         assertEquals("index", indexController.index(), "Wrong view returned");
         assertEquals("index", indexController.index(), ()-> "Wrong view returned also here");
@@ -25,7 +26,17 @@ class IndexControllerTest {
 
     @Test
     //@DisplayName("Test exception")
-    void testOpsHandler() {
+    public void testOpsHandler() {
         assertTrue("not_implemented".equals(indexController.opsHandler()), ()-> "Some expensive build");
     }
+
+    @Test
+    public void testOpsHandlerByException(){
+        assertThrows(ValueNotFoundException.class, ()->
+        {
+            indexController.opsHandlerByException();
+        });
+    }
+
+
 }
