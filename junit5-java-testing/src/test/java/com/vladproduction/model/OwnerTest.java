@@ -2,6 +2,9 @@ package com.vladproduction.model;
 
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OwnerTest {
@@ -35,6 +38,16 @@ class OwnerTest {
                 ()-> assertAll("Owner properties test",
                         ()->assertEquals(owner.getCity(), "Canvas", "City is not correct"),
                         ()->assertEquals(owner.getTelephone(), "123-123", "Telephone is not correct")));
+    }
+
+    @Test
+    public void testDependentAssertions_assertThat_Hamcrest(){
+        Owner owner = new Owner(1L, "John", "Doe");
+        owner.setCity("Canvas");
+        owner.setTelephone("123-123");
+
+        //after added dependency hamcrest-library:
+        assertThat(owner.getCity(), is("Canvas"));
     }
 
 
