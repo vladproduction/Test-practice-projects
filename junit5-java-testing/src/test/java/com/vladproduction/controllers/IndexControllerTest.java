@@ -2,8 +2,11 @@ package com.vladproduction.controllers;
 
 import com.vladproduction.exceptions.ValueNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +38,36 @@ public class IndexControllerTest {
         assertThrows(ValueNotFoundException.class, ()->
         {
             indexController.opsHandlerByException();
+        });
+    }
+
+
+    @Disabled("Demo example for assertTimeout")
+    @Test
+    public void testTimeOut(){
+        assertTimeout(Duration.ofMillis(100), ()->
+        {
+            Thread.sleep(5000);
+            System.out.println("I got here");
+        });
+    }
+
+    @Disabled("Demo example for assertTimeoutPreemptively")
+    @Test
+    public void testTimeoutPreemptively(){
+        assertTimeoutPreemptively(Duration.ofMillis(100), ()->
+        {
+            Thread.sleep(5000);
+            System.out.println("I got here TimeoutPreemptively");
+        });
+    }
+
+    @Test
+    public void testTimeOutPassed(){
+        assertTimeout(Duration.ofMillis(1000), ()->
+        {
+            Thread.sleep(800);
+            System.out.println("I got here testTimeOutPassed");
         });
     }
 
