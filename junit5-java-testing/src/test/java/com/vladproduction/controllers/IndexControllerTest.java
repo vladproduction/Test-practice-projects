@@ -1,6 +1,7 @@
 package com.vladproduction.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +15,7 @@ class IndexControllerTest {
         indexController = new IndexController();
     }
 
+    //@DisplayName("Test Name:  index view as returned")
     @Test
     void testIndex() {
         assertEquals("index", indexController.index());
@@ -22,6 +24,7 @@ class IndexControllerTest {
     }
 
     @Test
+    //@DisplayName("Test exception")
     void testOpsHandler() {
         assertTrue("not_implemented".equals(indexController.opsHandler()), ()-> "Some expensive build");
     }
