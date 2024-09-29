@@ -8,6 +8,7 @@ import com.vladproduction.services.VetService;
 import com.vladproduction.services.map.SpecialityMapService;
 import com.vladproduction.services.map.VetMapService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
@@ -15,6 +16,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("controller")
 class VetControllerTest {
 
     VetService vetService;

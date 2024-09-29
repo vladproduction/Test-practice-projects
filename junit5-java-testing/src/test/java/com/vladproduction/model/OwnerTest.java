@@ -1,5 +1,6 @@
 package com.vladproduction.model;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,7 +8,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
-class OwnerTest {
+@Tag("model")
+public class OwnerTest {
 
     @Test
     public void testDependentAssertions(){
