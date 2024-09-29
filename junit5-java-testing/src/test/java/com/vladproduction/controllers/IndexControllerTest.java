@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class IndexControllerTest {
 
@@ -71,5 +72,14 @@ public class IndexControllerTest {
         });
     }
 
+    @Disabled("Demo example for assumeTrue")
+    @Test
+    public void testAssumptionTrue() {
+        assumeTrue("VPRO".equalsIgnoreCase(System.getenv("VPRO_RUNTIME"))); //no such environment, so it`s not true (test fail)
+    }
 
+    @Test
+    public void testAssumptionTrueOfTwoStrings() {
+        assumeTrue("VPRO".equalsIgnoreCase("VPRO"));
+    }
 }
