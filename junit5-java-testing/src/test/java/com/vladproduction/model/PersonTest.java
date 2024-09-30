@@ -1,16 +1,18 @@
 package com.vladproduction.model;
 
 import com.vladproduction.ModelsTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 //@Tag("model")
-class PersonTest implements ModelsTest {
+public class PersonTest implements ModelsTest {
 
     @Test
-    void testGroupedAssertions() {
+    public void testGroupedAssertions() {
         //given
         Person person = new Person(1L, "John", "Doe");
 
@@ -22,7 +24,7 @@ class PersonTest implements ModelsTest {
     }
 
     @Test
-    void testGroupedAssertionsMessaging() {
+    public void testGroupedAssertionsMessaging() {
         //given
         Person person = new Person(1L, "John", "Doe");
 
@@ -30,5 +32,14 @@ class PersonTest implements ModelsTest {
         assertAll("Test properties Set and messaging",
                 ()->assertEquals("John", person.getFirstName(), "First Name is not correct"),
                 ()->assertEquals("Doe", person.getLastName(), "Last Name is not correct"));
+    }
+
+    @DisplayName("My Repeated Test")
+    @RepeatedTest(value = 5, name = "{displayName} : {currentRepetition} - {totalRepetitions}")
+//    @Test
+    public void testRepeatedTest() {
+        //just some testing logic:
+        Person person = new Person(1L, "John", "Doe");
+        assertEquals("John", person.getFirstName(), "First Name is not correct");
     }
 }
