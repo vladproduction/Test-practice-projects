@@ -1,10 +1,7 @@
 package com.vladproduction.model;
 
 import com.vladproduction.ModelsTest;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,10 +33,16 @@ public class PersonTest implements ModelsTest {
 
     @DisplayName("My Repeated Test")
     @RepeatedTest(value = 5, name = "{displayName} : {currentRepetition} - {totalRepetitions}")
-//    @Test
     public void testRepeatedTest() {
         //just some testing logic:
         Person person = new Person(1L, "John", "Doe");
         assertEquals("John", person.getFirstName(), "First Name is not correct");
+    }
+
+    @DisplayName("My Repeated Test With DI")
+    @RepeatedTest(value = 5)
+    public void testRepeatedTestWithDI(TestInfo testInfo, RepetitionInfo repetitionInfo) {
+        //params from test case is injected during runtime:
+        System.out.println(testInfo.getDisplayName() + " : " + repetitionInfo.getCurrentRepetition());
     }
 }
