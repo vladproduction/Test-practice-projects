@@ -1,5 +1,6 @@
 package com.vladproduction.model;
 
+import com.vladproduction.CustomArgsProvider;
 import com.vladproduction.ModelsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -60,6 +61,13 @@ public class OwnersParameterizedTest implements ModelsTest {
                 Arguments.of("RM", 1902, "Estadio Santiago Bernabéu", "Spain"),
                 Arguments.of("DK", 1927, "Dynamo Stadium named after Valeriy Lobanovskyi", "Ukraine")
         );
+    }
+
+    @DisplayName("Custom Provider Test")
+    @ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+    @ArgumentsSource(CustomArgsProvider.class)
+    public void testFromCustomProvider(String club, int val1, String val2, String val3){
+        System.out.println(club + " : " + val1 + " , " + val2 + " , " + val3);
     }
 
 
