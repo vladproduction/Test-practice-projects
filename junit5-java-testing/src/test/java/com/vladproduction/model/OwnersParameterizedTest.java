@@ -3,10 +3,9 @@ package com.vladproduction.model;
 import com.vladproduction.ModelsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
+
+import java.util.stream.Stream;
 
 public class OwnersParameterizedTest implements ModelsTest {
 
@@ -46,6 +45,21 @@ public class OwnersParameterizedTest implements ModelsTest {
     @CsvFileSource(resources = "/input.csv", numLinesToSkip = 1)
     public void testCsvInputFile(String club, int val1, String val2, String val3){
         System.out.println(club + " : " + val1 + " , " + val2 + " , " + val3);
+    }
+
+    @DisplayName("Method Provider Test")
+    @ParameterizedTest(name = "{displayName} - [{index}] {arguments}")
+    @MethodSource("getArgs")
+    public void testFromMethodProvider(String club, int val1, String val2, String val3){
+        System.out.println(club + " : " + val1 + " , " + val2 + " , " + val3);
+    }
+
+    static Stream<Arguments> getArgs(){
+        return Stream.of(
+                Arguments.of("MU", 1878, "Old Trafford", "England"),
+                Arguments.of("RM", 1902, "Estadio Santiago Bernabéu", "Spain"),
+                Arguments.of("DK", 1927, "Dynamo Stadium named after Valeriy Lobanovskyi", "Ukraine")
+        );
     }
 
 
