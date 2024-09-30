@@ -1,12 +1,13 @@
 package com.vladproduction.model;
 
+import com.vladproduction.ModelsTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tag("model")
-class PersonTest {
+//@Tag("model")
+class PersonTest implements ModelsTest {
 
     @Test
     void testGroupedAssertions() {

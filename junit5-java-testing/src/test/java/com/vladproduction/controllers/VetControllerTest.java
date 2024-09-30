@@ -1,5 +1,6 @@
 package com.vladproduction.controllers;
 
+import com.vladproduction.ControllersTest;
 import com.vladproduction.fauxspring.Model;
 import com.vladproduction.fauxspring.ModelMapImpl;
 import com.vladproduction.model.Vet;
@@ -16,8 +17,8 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Tag("controller")
-class VetControllerTest {
+//@Tag("controller")
+class VetControllerTest implements ControllersTest {
 
     VetService vetService;
     SpecialtyService specialtyService;

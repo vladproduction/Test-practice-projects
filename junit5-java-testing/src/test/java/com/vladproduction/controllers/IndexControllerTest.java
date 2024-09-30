@@ -1,5 +1,6 @@
 package com.vladproduction.controllers;
 
+import com.vladproduction.ControllersTest;
 import com.vladproduction.exceptions.ValueNotFoundException;
 import org.junit.jupiter.api.*;
 
@@ -9,8 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-@Tag("controller")
-public class IndexControllerTest {
+//@Tag("controller")
+public class IndexControllerTest implements ControllersTest {
 
     IndexController indexController;
 
