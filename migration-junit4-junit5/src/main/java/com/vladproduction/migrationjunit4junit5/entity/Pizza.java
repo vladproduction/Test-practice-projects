@@ -3,7 +3,9 @@ package com.vladproduction.migrationjunit4junit5.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,19 +21,15 @@ public class Pizza {
     private Long id;
 
     private String name;
+
     private String description;
+
     private Double price;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pizza")
-    private Set<Ingredient> ingredients = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pizza")
+    private List<Ingredient> ingredients = new ArrayList<>(); // Initialize the list
 
     @Enumerated(value = EnumType.STRING)
     private PortionSize portionSize;
-
-    public Pizza addIngredient(Ingredient ingredient){
-        ingredient.setPizza(this);
-        this.ingredients.add(ingredient);
-        return this;
-    }
 
 }

@@ -12,10 +12,12 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
 
-    @ManyToOne
-    private Pizza pizza;
+    @ManyToOne // Indicates that many ingredients can belong to one pizza
+//    @JoinColumn(name = "pizza_id") // Foreign key column in the ingredient table
+    private Pizza pizza; // Reference to the Pizza
 
     public Ingredient() {
     }
