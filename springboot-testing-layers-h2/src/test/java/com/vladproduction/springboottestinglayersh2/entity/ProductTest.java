@@ -22,6 +22,22 @@ class ProductTest {
     }
 
     @Test
+    public void testGroupedAssertionsForProduct() {
+        //given
+        Product product = new Product();
+        product.setName("Base Product");
+        product.setDescription("Base Product Description");
+        product.setPrice(10000.0);
+
+        //for assertEquals: 'expected', 'actual'
+        //when
+        assertAll("Test properties Set",
+                ()->assertEquals("Base Product", product.getName()),
+                ()->assertEquals("Base Product Description", product.getDescription()),
+                ()->assertEquals(10000.0, product.getPrice()));
+    }
+
+    @Test
     public void testToString() {
         Product product = new Product();
         product.setId(1L);

@@ -1,5 +1,6 @@
 package com.vladproduction.springboottestinglayersh2.repository;
 
+import com.vladproduction.springboottestinglayersh2.RepositoryTests;
 import com.vladproduction.springboottestinglayersh2.entity.Product;
 import org.junit.After;
 import org.junit.Before;
@@ -17,10 +18,15 @@ import static org.junit.Assert.*;
  * The @SpringBootTest annotation is used to load the application context
  * while allowing properties from the 'test' configuration folder to override
  * the default application properties.
+ *
+ * It uses JUnit 4 for testing and Spring's testing
+ * support for integration testing with an embedded database.
+ *
+ * JUnit 4 require a specific runner to be defined for Spring tests; so we use: {@code @RunWith(SpringRunner.class)}
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProductRepositoryTest2 {
+public class ProductRepositoryTest2 implements RepositoryTests {
 
     @Autowired
     private ProductRepository productRepository;

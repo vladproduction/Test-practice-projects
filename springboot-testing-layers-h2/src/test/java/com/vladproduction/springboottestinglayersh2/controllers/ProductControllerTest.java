@@ -59,6 +59,7 @@ class ProductControllerTest {
         assertEquals(product2.getId(), getById2.getId());
         assertEquals(product3.getId(), getById3.getId());
 
+        //[GET: /api/products] listAllProducts()
         var result = mockMvc.perform(get(BASE_URL))
                 .andExpect(status().isOk()).andReturn();
         String json = result.getResponse().getContentAsString();
@@ -69,6 +70,7 @@ class ProductControllerTest {
 
     }
 
+    //[POST: ] saveProduct(@RequestBody Product product)
     private Product createProduct(Product product) throws Exception {
         var result = mockMvc.perform(MockMvcRequestBuilders
                         .post(BASE_URL)
@@ -78,6 +80,15 @@ class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();
 
+        String json = result.getResponse().getContentAsString();
+        return fromJson(json);
+    }
+
+    //[GET: /api/products/1] getProductById(@PathVariable Long id)
+    private  Product getProductById(Long id) throws Exception {
+
+        var result = mockMvc.perform(get(BASE_URL + "/" + id)) // Assuming your endpoint is "api/products/{id}"
+                .andExpect(status().isOk()).andReturn();
         String json = result.getResponse().getContentAsString();
         return fromJson(json);
     }
@@ -93,16 +104,10 @@ class ProductControllerTest {
     }
 
     private static Product[] fromJsonAsArray(String str) throws JsonProcessingException {
+
         return OBJECT_MAPPER.readValue(str, Product[].class);
     }
 
-    private  Product getProductById(Long id) throws Exception {
 
-        var result = mockMvc.perform(get(BASE_URL + "/" + id)) // Assuming your endpoint is "api/products/{id}"
-                .andExpect(status().isOk()).andReturn();
-        String json = result.getResponse().getContentAsString();
-        return fromJson(json);
-
-    }
 
 }

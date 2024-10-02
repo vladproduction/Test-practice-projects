@@ -1,5 +1,6 @@
 package com.vladproduction.springboottestinglayersh2.repository;
 
+import com.vladproduction.springboottestinglayersh2.RepositoryTests;
 import com.vladproduction.springboottestinglayersh2.entity.Product;
 import org.junit.After;
 import org.junit.Before;
@@ -16,10 +17,15 @@ import static org.junit.Assert.*;
  *
  * This class uses the @DataJpaTest annotation to configure
  * an embedded database for repository testing.
+ *
+ * It uses JUnit 4 for testing and Spring's testing
+ * support for integration testing with an embedded database.
+ *
+ * JUnit 4 require a specific runner to be defined for Spring tests; so we use: {@code @RunWith(SpringRunner.class)}
  */
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class ProductRepositoryTest {
+public class ProductRepositoryTest implements RepositoryTests {
 
     @Autowired
     private ProductRepository productRepository;

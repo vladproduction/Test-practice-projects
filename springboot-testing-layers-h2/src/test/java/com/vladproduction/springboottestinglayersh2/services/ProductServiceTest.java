@@ -5,12 +5,14 @@ import com.vladproduction.springboottestinglayersh2.repository.ProductRepository
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**
@@ -21,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * and {@link ProductService} components. It also sets up a sample product for
  * testing various service methods.
  */
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class) //don`t need any runner class while using JUnit5
 @SpringBootTest
 class ProductServiceTest {
 
@@ -55,13 +57,21 @@ class ProductServiceTest {
         newProduct.setPrice(20.0);
 
         Product savedProduct = productService.saveProduct(newProduct);
+
+        //assertj library (assertThat)
         assertThat(savedProduct).isNotNull();
         assertThat(savedProduct.getName()).isEqualTo("New Product");
     }
 
     @Test
     void getProductByIdTest() {
+        //assume @BeforeEach is saved a Product
         Product product = productService.getProductById(sampleProduct.getId());
+        //junit-5
+        assertEquals("Sample Product2", product.getName());
+        assertEquals(20.0, product.getPrice());
+
+        //assertj library (assertThat)
         assertThat(product).isNotNull();
         assertThat(product.getName()).isEqualTo("Sample Product2");
     }
@@ -69,6 +79,12 @@ class ProductServiceTest {
     @Test
     void listAllProductsTest() {
         Iterable<Product> products = productService.listAllProducts();
+        List<Product> productList = new ArrayList<>();
+        products.forEach(productList::add); // Add all products to the list
+        //junit-5
+        assertEquals(2, productList.size());
+
+        //assertj library (assertThat)
         assertThat(products).hasSize(2);
     }
 
