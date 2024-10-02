@@ -8,10 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -28,6 +25,7 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Override
     public Pizza getPizzaById(Long id) {
+        log.info("I`m in PizzaService.getPizzaById()...");
         return pizzaRepository.findById(id).orElseThrow(()->new PizzaByIdNotFoundException("Pizza with id: " + id + " is not found."));
     }
 }

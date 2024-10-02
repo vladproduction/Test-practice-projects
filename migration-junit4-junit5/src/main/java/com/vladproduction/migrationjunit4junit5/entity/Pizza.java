@@ -1,11 +1,13 @@
 package com.vladproduction.migrationjunit4junit5.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,8 +28,15 @@ public class Pizza {
 
     private Double price;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pizza")
-    private List<Ingredient> ingredients = new ArrayList<>(); // Initialize the list
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "pizza_ingredient", // Name of the join table
+            joinColumns = @JoinColumn(name = "pizza_id"), // Column in the join table for Pizza
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id") // Column in the join table for Ingredient
+    )
+    @JsonManagedReference // This side is the managed reference
+    private Set<Ingredient> ingredients = new HashSet<>(); // Set to avoid duplicates
 
     @Enumerated(value = EnumType.STRING)
     private PortionSize portionSize;

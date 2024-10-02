@@ -1,7 +1,11 @@
 package com.vladproduction.migrationjunit4junit5.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,9 +19,9 @@ public class Ingredient {
 
     private String description;
 
-    @ManyToOne // Indicates that many ingredients can belong to one pizza
-//    @JoinColumn(name = "pizza_id") // Foreign key column in the ingredient table
-    private Pizza pizza; // Reference to the Pizza
+    @ManyToMany(mappedBy = "ingredients") // Inverse side of the relationship
+    @JsonBackReference // This side is the back reference
+    private Set<Pizza> pizzas = new HashSet<>(); //Reference back to pizza
 
     public Ingredient() {
     }
