@@ -26,6 +26,6 @@ public class PizzaServiceImpl implements PizzaService {
     @Override
     public Pizza getPizzaById(Long id) {
         log.info("I`m in PizzaService.getPizzaById()...");
-        return pizzaRepository.findById(id).orElseThrow(()->new PizzaByIdNotFoundException("Pizza with id: " + id + " is not found."));
+        return pizzaRepository.findById(id).orElseThrow(()-> new PizzaByIdNotFoundException("Pizza with id: " + id + " is not found."));
     }
 }

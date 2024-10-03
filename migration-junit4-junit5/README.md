@@ -16,9 +16,10 @@ Project contain:
 ### JUnit 4 testing
 The following guide illustrate how to use JUnit 4:
 
-* case1;
-* case2;
-* case3;
+* entity package tested: IngredientTest, PizzaTest, PortionSizeTest;
+* repository package tested: IngredientRepositoryTest, PizzaRepositoryTest;
+* service.impl package tested: IngredientServiceImplTest, PizzaServiceImplTest;
+* controller package tested: IngredientControllerTest, PizzaControllerTest;
 
 ### JUnit 5 testing
 
