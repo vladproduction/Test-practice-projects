@@ -1,0 +1,126 @@
+//here is example of the file that show how dependencies are reflects to each other in case of
+- Spring Boot starter;
+- JUnit 5;
+- exclude for Junit 4;
+//////////////   Key Points:   //////////////
+Since your Spring Boot version is 3.3.4, it is indeed higher than 2.2. As of Spring Boot 2.2 and later,
+the Spring Boot Starter Test dependency includes JUnit 5 (also known as JUnit Jupiter) by default.
+1) JUnit 5 Inclusion: Starting from Spring Boot 2.2, JUnit 5 is the default testing framework included in the
+Spring Boot Starter Test dependency. Therefore, when you use:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+It will automatically bring in the necessary JUnit 5 dependencies along with other testing utilities.
+
+2)Exclusions Not Necessary: since were using 3.3.4, we don't need to specify JUnit 5 separately in pom.xml or add exclusions,
+unless to have specific needs for a particular version or want to exclude other conflicting libraries.
+
+3)Usage: we directly use the JUnit 5 annotations and assertions in our tests without any additional configuration.
+As an example tests can use annotations like @Test, @BeforeEach, @AfterEach, assertEquals, assertThrows, etc., without any issues.
+
+
+
+/////////////////////// my old version of pom.xml////////////////////
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.vladproduction</groupId>
+	<artifactId>junit5-springboot-pizzadb</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>junit5-springboot-pizzadb</name>
+	<description>Spring Boot App to show ho to testing by JUnit5 and Mockito </description>
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Spring Boot Starter Test (exclude: to prevent including automatically JUnit4) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- JUnit Jupiter API for JUnit 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.1</version> <!-- Use the latest stable version -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.8.1</version> <!-- Use the latest stable version -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.11.2</version> <!-- or the latest version -->
+			<scope>test</scope>
+		</dependency>
+    </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

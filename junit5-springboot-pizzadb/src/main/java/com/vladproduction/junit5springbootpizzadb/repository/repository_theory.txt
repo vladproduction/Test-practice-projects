@@ -1,0 +1,35 @@
+Having a repository layer, typically defined with interfaces such as IngredientRepository and PizzaRepository,
+is a common and recommended practice in Spring applications using JPA (Java Persistence API).
+This layer is responsible for handling the persistence of your data entities and abstracts the data access logic,
+allowing service layer to interact with the database more easily.
+
+Overview of how repositories work and why they are structured this way:
+
+The Repository Pattern
+Abstraction: Repositories abstract the data access layer, which means that the service layer doesn't need to know about
+the underlying data source or the details of how data is retrieved or persisted. It simply relies on the repository interfaces.
+
+Decoupling: This separation of concerns helps in decoupling your business logic from database access logic. Changes to
+database access (like switching from JPA to another ORM or even to a different data source) can often be done without altering the business logic.
+
+Interface Definition: Typically, define repository interfaces by extending Spring Data JPA interfaces such as JpaRepository or CrudRepository.
+This provides built-in methods for common database operations (like save, delete, find, etc.) without needing to write boilerplate code.
+
+Example Repositories
+PizzaRepository defined:
+@Repository
+public interface PizzaRepository extends JpaRepository<Pizza, Long> {
+    // Custom query methods can be added here
+}
+
+
+Benefits of Using Repositories
+Simplicity: They simplify data access and management by handling the underlying complexity of the database operations.
+Built-in Methods: Spring Data provides a plethora of built-in methods that allow to perform CRUD operations easily.
+Query Derivation: Can define methods based on method names, and Spring Data will derive the query automatically.
+Custom Queries: Can also define custom queries using the @Query annotation if needed.
+Integration: Repositories integrate easily with other Spring features, such as transactions.
+Summary
+Using repository interfaces like IngredientRepository and PizzaRepository is indeed a correct and effective way to handle data persistence
+in a Spring application. This practice adheres to the principles of the repository pattern and enhances the
+maintainability and scalability of application.
