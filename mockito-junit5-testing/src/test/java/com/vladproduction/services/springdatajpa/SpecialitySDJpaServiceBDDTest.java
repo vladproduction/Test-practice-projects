@@ -51,7 +51,7 @@ class SpecialitySDJpaServiceBDDTest {
         // then
         assertThat(foundSpecialities).hasSize(2); // Check the size of the returned set
         assertThat(foundSpecialities).contains(speciality1, speciality2); // Verify the expected specialities are present
-        then(specialtyRepository).should().findAll(); // Verify that the repository's findAll method was called
+        then(specialtyRepository).should(timeout(100)).findAll(); // Verify that the repository's findAll method was called
     }
 
     @Test
@@ -63,7 +63,7 @@ class SpecialitySDJpaServiceBDDTest {
         Speciality foundSpeciality = specialitySDJpaService.findById(1L);
         //then
         assertThat(foundSpeciality).isNotNull();
-        then(specialtyRepository).should().findById(anyLong());
+        then(specialtyRepository).should(timeout(100)).findById(anyLong());
         then(specialtyRepository).shouldHaveNoMoreInteractions();
     }
 
@@ -79,7 +79,7 @@ class SpecialitySDJpaServiceBDDTest {
         // then
         assertThat(savedSpeciality).isNotNull();
         assertThat(savedSpeciality).isEqualTo(specialityToSave); // Verify the saved object
-        then(specialtyRepository).should().save(any(Speciality.class)); // Verify the save was called
+        then(specialtyRepository).should(timeout(100)).save(any(Speciality.class)); // Verify the save was called
     }
 
     @Test
