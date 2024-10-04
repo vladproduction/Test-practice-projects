@@ -1,9 +1,9 @@
-package com.vladproduction.mocksannotations;
+package com.vladproduction.mockitoextension;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +12,12 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class AnnotationMocksTest {
+/**
+ * do not need initMocks method in {@BeforeEach} section
+ * while we are using {@ExtendWith(MockitoExtension.class)}
+ * */
+@ExtendWith(MockitoExtension.class)
+public class JUnitExtensionTest {
 
     @Mock
     Map<String, Object> mapMock;
@@ -21,10 +26,10 @@ public class AnnotationMocksTest {
     @Mock
     Iterator<String> iteratorMock;
 
-    @BeforeEach
+    /*@BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-    }
+    }*/
 
     @Test
     public void testMock() {
@@ -42,19 +47,6 @@ public class AnnotationMocksTest {
 
     @Test
     void testIteratorMock() {
-
-        when(iteratorMock.next()).thenReturn("One", "Two");
-        assertEquals("One", iteratorMock.next());
-        assertEquals("Two", iteratorMock.next());
-
-        when(iteratorMock.hasNext()).thenReturn(true, true, false);
-        assertEquals(true, iteratorMock.hasNext());
-        assertEquals(true, iteratorMock.hasNext());
-        assertEquals(false, iteratorMock.hasNext());
-    }
-
-    @Test
-    void testIteratorMock2() {
 
         // Set up the hasNext() behavior first
         when(iteratorMock.hasNext()).thenReturn(true, true, false);

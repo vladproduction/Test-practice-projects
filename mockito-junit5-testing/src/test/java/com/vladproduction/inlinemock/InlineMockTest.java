@@ -61,6 +61,8 @@ public class InlineMockTest {
 
         assertEquals("First", iteratorMock.next());
         assertEquals("Second", iteratorMock.next());
+        assertEquals(true, iteratorMock.hasNext());
+        assertEquals(true, iteratorMock.hasNext());
         assertEquals(false, iteratorMock.hasNext());
     }
 }
