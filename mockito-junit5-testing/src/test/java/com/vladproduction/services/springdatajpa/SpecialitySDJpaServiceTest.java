@@ -13,6 +13,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,6 +38,20 @@ class SpecialitySDJpaServiceTest {
         //then
         assertThat(foundSpeciality).isNotNull(); //asserts the expected outcome of the action
         verify(specialtyRepository).findById(anyLong()); //verify that the expected interaction with the mock repository occurred
+    }
+
+    @Test
+    public void testFindByIdBdd_Verification(){
+        //given
+        Speciality speciality = new Speciality();
+        given(specialtyRepository.findById(1L)).willReturn(Optional.of(speciality));
+        //when
+        Speciality foundSpeciality = specialitySDJpaService.findById(1L);
+        //then
+        assertThat(foundSpeciality).isNotNull();
+//        then(specialtyRepository).should().findById(anyLong());
+        then(specialtyRepository).should(times(1)).findById(anyLong()); //if we need to verify numbers of invocations
+        then(specialtyRepository).shouldHaveNoMoreInteractions();
     }
 
     @Test
