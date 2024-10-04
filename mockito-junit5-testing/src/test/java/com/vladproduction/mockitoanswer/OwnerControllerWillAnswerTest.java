@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.inOrder;
 
 @ExtendWith(MockitoExtension.class)
 class OwnerControllerWillAnswerTest {
@@ -26,6 +27,8 @@ class OwnerControllerWillAnswerTest {
     OwnerService ownerService;
     @InjectMocks
     OwnerController ownerController;
+    @Mock
+    Model model;
     @Mock
     BindingResult bindingResult;
     @Captor
@@ -110,6 +113,25 @@ class OwnerControllerWillAnswerTest {
         //then
         assertThat("%Find me%").isEqualToIgnoringCase(captorStrings.getValue());
         assertThat("owners/ownersList").isEqualToIgnoringCase(viewName);
+    }
+
+    @Test
+    public void testProcessWillAnswer_Found_InOrder() {
+        //given
+        Owner owner = new Owner(1l, "John", "Find me");
+        InOrder inOrder = inOrder(ownerService, model);
+
+        //when
+        String viewName = ownerController.processFindForm(owner, bindingResult, model);
+
+        //then
+        assertThat("%Find me%").isEqualToIgnoringCase(captorStrings.getValue());
+        assertThat("owners/ownersList").isEqualToIgnoringCase(viewName);
+
+        // inorder asserts
+        inOrder.verify(ownerService).findAllByLastNameLike(anyString());
+        inOrder.verify(model).addAttribute(anyString(), anyList());
+
     }
 
 
