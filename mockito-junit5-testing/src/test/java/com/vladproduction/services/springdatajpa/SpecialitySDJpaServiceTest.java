@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -22,6 +23,21 @@ class SpecialitySDJpaServiceTest {
 
     @InjectMocks
     SpecialitySDJpaService specialitySDJpaService;
+/**
+ * Behavior Driven Development (BDD)
+ *
+ * */
+    @Test
+    public void testFindByIdBdd(){
+        //given
+        Speciality speciality = new Speciality();
+        given(specialtyRepository.findById(1L)).willReturn(Optional.of(speciality)); //mock response for the findById method
+        //when
+        Speciality foundSpeciality = specialitySDJpaService.findById(1L); //describes the action that triggers the behavior of testing
+        //then
+        assertThat(foundSpeciality).isNotNull(); //asserts the expected outcome of the action
+        verify(specialtyRepository).findById(anyLong()); //verify that the expected interaction with the mock repository occurred
+    }
 
     @Test
     public void testDeleteByObject(){
