@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {BaseConfig.class, LaurelConfig.class})
+@ContextConfiguration(classes = {BaseConfig.class, YannyConfig.class})
 public class InterpreterTest {
 
     @Autowired
@@ -25,7 +25,7 @@ public class InterpreterTest {
     @Test
     public void whatIHearTest() {
         String word = interpreter.whatIHear();
-        assertEquals("Laurel", word); //bring that context: marked as Primary
-//        assertEquals("Yanny", word);
+//        assertEquals("Laurel", word); //bring that context: marked as Primary
+        assertEquals("Yanny", word);
     }
 }
