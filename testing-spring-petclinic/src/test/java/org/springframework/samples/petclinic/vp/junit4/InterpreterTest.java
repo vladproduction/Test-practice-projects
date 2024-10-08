@@ -4,11 +4,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.vp.Interpreter;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
+@ActiveProfiles("base-test4")
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {BaseConfig4.class, LaurelConfig4.class})
 public class InterpreterTest {
