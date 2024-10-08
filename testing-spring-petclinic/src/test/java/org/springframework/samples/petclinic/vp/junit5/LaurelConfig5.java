@@ -5,10 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.samples.petclinic.vp.LaurelWordsProducer;
 
 @Configuration
-public class LaurelConfig {
+public class LaurelConfig5 {
 
     @Bean
     LaurelWordsProducer laurelWordsProducer(){
+
         return new LaurelWordsProducer();
     }
 

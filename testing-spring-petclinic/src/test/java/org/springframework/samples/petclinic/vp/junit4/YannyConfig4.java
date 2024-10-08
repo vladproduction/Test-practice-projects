@@ -2,14 +2,14 @@ package org.springframework.samples.petclinic.vp.junit4;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.samples.petclinic.vp.LaurelWordsProducer;
+import org.springframework.samples.petclinic.vp.YannyWordsProducer;
 
 @Configuration
-public class LaurelConfig {
+public class YannyConfig4 {
 
     @Bean
-    LaurelWordsProducer laurelWordsProducer(){
-        return new LaurelWordsProducer();
+    YannyWordsProducer yannyWordsProducer(){
+        return new YannyWordsProducer();
     }
 
 }

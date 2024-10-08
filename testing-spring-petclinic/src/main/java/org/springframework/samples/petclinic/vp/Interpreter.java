@@ -8,6 +8,7 @@ public class Interpreter {
     private final WordProducer wordProducer;
 
     public Interpreter(WordProducer wordProducer) {
+
         this.wordProducer = wordProducer;
     }
 

@@ -7,7 +7,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = {BaseConfig.class, YannyConfig.class})
+@SpringJUnitConfig(classes = {BaseConfig5.class, YannyConfig5.class})
 class InterpreterYannyTest {
 
     @Autowired

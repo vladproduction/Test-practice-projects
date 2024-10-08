@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.vp.innerclass;
+package org.springframework.samples.petclinic.vp.junit5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = InterpreterInnerClassTest.TestConfig.class)
+@SpringJUnitConfig(classes = InterpreterInnerClassTest.TestConfigInner.class)
 class InterpreterInnerClassTest {
 
     @Configuration
-    static class TestConfig{
+    static class TestConfigInner{
         @Bean
         Interpreter interpreter(){
             return new Interpreter(new LaurelWordsProducer());

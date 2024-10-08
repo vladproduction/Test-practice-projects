@@ -7,7 +7,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = {BaseConfig.class, LaurelConfig.class})
+@SpringJUnitConfig(classes = {BaseConfig5.class, LaurelConfig5.class})
 class InterpreterLaurelTest {
 
     @Autowired

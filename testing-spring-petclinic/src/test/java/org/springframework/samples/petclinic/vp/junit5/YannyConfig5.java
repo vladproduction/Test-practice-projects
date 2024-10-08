@@ -5,10 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.samples.petclinic.vp.YannyWordsProducer;
 
 @Configuration
-public class YannyConfig {
+public class YannyConfig5 {
 
     @Bean
     YannyWordsProducer yannyWordsProducer(){
+
         return new YannyWordsProducer();
     }
 
