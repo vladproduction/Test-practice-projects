@@ -1,9 +1,9 @@
-package org.springframework.samples.petclinic.vp;
+package org.springframework.samples.petclinic.vp.junit4;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.vp.Interpreter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
