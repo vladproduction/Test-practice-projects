@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -173,6 +174,58 @@ class OwnerControllerTest {
                 .andExpect(model().attributeHasFieldErrors("owner", "telephone"))
                 .andExpect(view().name("owners/createOrUpdateOwnerForm"));
     }
+
+    //assignment (test with Form Post) this part of code:
+    /*@RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.POST)
+    public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result, @PathVariable("ownerId") int ownerId) {
+        if (result.hasErrors()) {
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        } else {
+            owner.setId(ownerId);
+            this.clinicService.saveOwner(owner);
+            return "redirect:/owners/{ownerId}";
+        }
+    }*/
+    //positive case:
+    @Test
+    public void testProcessUpdateOwnerFormPostValid() throws Exception {
+        //need to have valid parameters (by entity fields are defined)
+        Owner newOwnerPosting = new Owner();
+        newOwnerPosting.setFirstName("John");
+        newOwnerPosting.setLastName("Doe");
+        newOwnerPosting.setAddress("Address1");
+        newOwnerPosting.setCity("City");
+        newOwnerPosting.setTelephone("1234567890");
+
+        mockMvc.perform(post("/owners/{ownerId}/edit", 1)
+                        .param("firstName", newOwnerPosting.getFirstName())
+                        .param("lastName", newOwnerPosting.getLastName())
+                        .param("address", newOwnerPosting.getAddress())
+                        .param("city", newOwnerPosting.getCity())
+                        .param("telephone", newOwnerPosting.getTelephone()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/{ownerId}"));
+    }
+
+    //negative case:
+    @Test
+    public void testProcessUpdateOwnerFormPostNotValid() throws Exception {
+        //need to have valid parameters (by entity fields are defined)
+        Owner newOwnerPosting = new Owner();
+        newOwnerPosting.setFirstName("John");
+        newOwnerPosting.setLastName("Doe");
+        newOwnerPosting.setAddress("Address1");
+        newOwnerPosting.setCity("City");
+        newOwnerPosting.setTelephone("1234567890");
+
+        mockMvc.perform(post("/owners/{ownerId}/edit", 1)
+                        .param("firstName", newOwnerPosting.getFirstName())
+                        .param("lastName", newOwnerPosting.getLastName())
+                        .param("address", newOwnerPosting.getAddress()))
+                .andExpect(status().isOk())
+                .andExpect(view().name(OwnerController.VIEWS_OWNER_CREATE_OR_UPDATE_FORM));
+    }
+
 
     @AfterEach
     public void tearDown() {
