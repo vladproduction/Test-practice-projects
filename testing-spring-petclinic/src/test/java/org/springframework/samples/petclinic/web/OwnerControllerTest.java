@@ -14,6 +14,11 @@ import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,6 +28,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 //setting up web context for us
@@ -114,6 +120,36 @@ class OwnerControllerTest {
                 .andExpect(view().name("redirect:/owners/1"));
 
         then(clinicService).should().findOwnerByLastName(anyString());
+    }
+
+    //testNewOwnerPostValid() --> this part of code:
+    /*@RequestMapping(value = "/owners/new", method = RequestMethod.POST)
+    public String processCreationForm(@Valid Owner owner, BindingResult result) {
+        if (result.hasErrors()) {
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        } else {
+            this.clinicService.saveOwner(owner);
+            return "redirect:/owners/" + owner.getId();
+        }
+    }*/
+    @Test
+    public void testNewOwnerPostValid() throws Exception {
+        //need to have valid parameters (by entity fields are defined)
+        Owner newOwnerPosting = new Owner();
+        newOwnerPosting.setFirstName("John");
+        newOwnerPosting.setLastName("Doe");
+        newOwnerPosting.setAddress("Address1");
+        newOwnerPosting.setCity("City");
+        newOwnerPosting.setTelephone("1234567890");
+
+        mockMvc.perform(post("/owners/new")
+                        .param("firstName", newOwnerPosting.getFirstName())
+                        .param("lastName", newOwnerPosting.getLastName())
+                        .param("address", newOwnerPosting.getAddress())
+                        .param("city", newOwnerPosting.getCity())
+                        .param("telephone", newOwnerPosting.getTelephone()))
+                .andExpect(status().is3xxRedirection());
+
     }
 
     @AfterEach
