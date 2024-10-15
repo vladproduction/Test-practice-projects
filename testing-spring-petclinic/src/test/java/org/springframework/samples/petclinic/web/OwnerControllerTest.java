@@ -18,13 +18,17 @@ class OwnerControllerTest {
 
     @Autowired
     OwnerController ownerController;
+
     @Autowired
     ClinicService clinicService;
+
     MockMvc mockMvc;
+
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(ownerController).build();
     }
+
     @Test
     public void testLoadContentUp(){
         // should pass
@@ -36,6 +40,19 @@ class OwnerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("owner"))
                 .andExpect(view().name("owners/createOrUpdateOwnerForm"));
+    }
+
+    @Test
+    public void testFindByNameNotFound() throws Exception {
+        mockMvc.perform(get("/owners")
+                    .param("lastName", "do not find me!"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/findOwners"));
+        /*this part of code we are testing: and we say to mockito return nothing; so test is correct and pass;
+        if (results.isEmpty()) {
+            // no owners found
+            result.rejectValue("lastName", "notFound", "not found");
+            return "owners/findOwners";*/
     }
 
 }
