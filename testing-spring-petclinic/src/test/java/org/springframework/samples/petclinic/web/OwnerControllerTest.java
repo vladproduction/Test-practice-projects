@@ -152,6 +152,28 @@ class OwnerControllerTest {
 
     }
 
+    //negative case of validation:
+    @Test
+    public void testNewOwnerPostNotValid() throws Exception {
+        //need to have valid parameters (by entity fields are defined)
+        Owner newOwnerPosting = new Owner();
+        newOwnerPosting.setFirstName("John");
+        newOwnerPosting.setLastName("Doe");
+        newOwnerPosting.setAddress("Address1");
+        newOwnerPosting.setCity("City");
+        newOwnerPosting.setTelephone("1234567890");
+
+        mockMvc.perform(post("/owners/new")
+                        .param("firstName", newOwnerPosting.getFirstName())
+                        .param("lastName", newOwnerPosting.getLastName())
+                        .param("city", newOwnerPosting.getCity()))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeHasErrors("owner"))
+                .andExpect(model().attributeHasFieldErrors("owner", "address"))
+                .andExpect(model().attributeHasFieldErrors("owner", "telephone"))
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"));
+    }
+
     @AfterEach
     public void tearDown() {
         //need to have to avoid reusing data through mockito testing content
