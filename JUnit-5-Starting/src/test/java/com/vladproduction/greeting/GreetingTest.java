@@ -1,8 +1,7 @@
-package com.vladproduction;
+package com.vladproduction.greeting;
 
+import com.vladproduction.greeting.Greeting;
 import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GreetingTest {
 

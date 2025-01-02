@@ -1,4 +1,4 @@
-package com.vladproduction;
+package com.vladproduction.greeting;
 
 public class Greeting {
 
