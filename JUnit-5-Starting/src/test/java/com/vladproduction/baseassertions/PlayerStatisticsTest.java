@@ -26,6 +26,7 @@ class PlayerStatisticsTest {
     public void testYoungerPlayerSame(){
         Player player1 = new Player("David", 32);
         Player player2 = new Player("David", 25);
+
         assertSame(player2, PlayerStatistics.getYoungerPlayer(player1, player2));
     }
 
@@ -33,6 +34,7 @@ class PlayerStatisticsTest {
     public void testPlayerUnderThirty(){
         Player player1 = new Player("David", 29);
         PlayerStatistics playerStatistics = new PlayerStatistics(player1, 3,3);
+
         assertTrue(playerStatistics.underThirty());
     }
 
@@ -40,6 +42,7 @@ class PlayerStatisticsTest {
     public void testPlayerUnderThirtyNegative(){
         Player player1 = new Player("David", 32);
         PlayerStatistics playerStatistics = new PlayerStatistics(player1, 3,3);
+
         assertFalse(playerStatistics.underThirty());
     }
 
@@ -47,6 +50,7 @@ class PlayerStatisticsTest {
     public void testCsvRecordNullReturn(){
         Player player1 = new Player("David", 32);
         PlayerStatistics playerStatistics = new PlayerStatistics(player1, 0,0);
+
         assertNull(playerStatistics.createCsvRecords());
     }
 
@@ -54,6 +58,7 @@ class PlayerStatisticsTest {
     public void testCsvRecordReturnNotNull(){
         Player player1 = new Player("David", 32);
         PlayerStatistics playerStatistics = new PlayerStatistics(player1, 3,4);
+
         assertNotNull(playerStatistics.createCsvRecords());
     }
 
@@ -62,6 +67,7 @@ class PlayerStatisticsTest {
         Player player1 = new Player("David", 32);
         PlayerStatistics playerStatistics = new PlayerStatistics(player1, 10,20);
         Double[] expectedStats = {2d, 0.5d}; //Double[]{goalsPerGame(), gamesPerGoal()};
+
         assertArrayEquals(expectedStats, playerStatistics.createCsvRecords());
     }
 
