@@ -41,6 +41,6 @@ class BankAccountTest {
     @DisplayName("deposit(500) successfully")
     void depositTest() {
         bankAccount = new BankAccount(400, 0);
-        assertEquals(900, bankAccount.deposit(500));
+        assertEquals(900, bankAccount.deposit(500), "Unexpected value, expected: 900");
     }
 }

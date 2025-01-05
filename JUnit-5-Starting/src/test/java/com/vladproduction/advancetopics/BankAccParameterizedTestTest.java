@@ -40,7 +40,6 @@ public class BankAccParameterizedTestTest {
     }
 
     @ParameterizedTest
-
     @CsvFileSource(resources = "/details.csv", delimiter = ',')
     public void depositAndNameTestScvFileResource(double amount, String name, BankAcc bankAcc){
         bankAcc.deposit(amount);
