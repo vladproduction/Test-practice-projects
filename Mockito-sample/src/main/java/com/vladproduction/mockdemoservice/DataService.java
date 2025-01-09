@@ -1,4 +1,4 @@
-package com.vladproduction.app01;
+package com.vladproduction.mockdemoservice;
 
 import org.springframework.stereotype.Service;
 

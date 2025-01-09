@@ -1,4 +1,4 @@
-package com.vladproduction.app01;
+package com.vladproduction.mockdemoservice;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
